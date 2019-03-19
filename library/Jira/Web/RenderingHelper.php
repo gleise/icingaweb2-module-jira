@@ -48,7 +48,7 @@ class RenderingHelper
             throw new RuntimeException('No JIRA host has been configured');
         }
         $baseUrl = sprintf(
-            'https://%s:%d/%s',
+            '%s:%d/%s',
             $host,
             $config->get('api', 'port', 443),
             trim($config->get('api', 'path', ''), '/')
@@ -61,7 +61,7 @@ class RenderingHelper
         } else {
             $baseUrl .= $url;
         }
-        
+
         $attributes['href'] = $baseUrl;
         $attributes += [
             'target' => '_blank',
@@ -70,7 +70,7 @@ class RenderingHelper
 
         return Html::tag('a', $attributes, $caption)->setSeparator(' ');
     }
-    
+
     public function renderAvatar($object, $width = 16, $height = 16)
     {
         return $this->renderIconImage(
